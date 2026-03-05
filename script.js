@@ -899,6 +899,13 @@ function renderOverlookedBenefits() {
             show: r.isRetiree
         },
         {
+            title: "Combat-Related Special Compensation (CRSC)",
+            value: "Tax-free combat pay",
+            desc: "Military retirees with combat-related disabilities (including training injuries, airborne ops, and hazardous duty) can receive tax-free CRSC payments instead of taxable retirement pay. Requires a separate application to your branch — process varies by service. You receive whichever is higher: CRDP or CRSC.",
+            url: "https://www.dfas.mil/retiredmilitary/disability/crsc/",
+            show: r.isRetiree
+        },
+        {
             title: "$0 VA Healthcare — What It Really Means",
             value: "$0 copays across the board",
             desc: "Priority Group 1 = zero copays for everything: ER visits ($2,200 avg civilian cost), ambulance ($1,200), surgeries, mental health ($200/session), prescriptions ($150/mo avg), and preventive care. All through VA facilities or VA-authorized community care.",
