@@ -925,6 +925,13 @@ function renderOverlookedBenefits() {
             desc: "Over 600 Veterans Treatment Courts nationwide offer an alternative to traditional criminal courts. Eligible veterans get treatment-focused programs instead of incarceration, with access to VA services, mentors, and case dismissal upon completion. Free legal help is also available through VA-accredited attorneys and legal clinics.",
             url: "https://www.va.gov/homeless/vjo.asp",
             show: true
+        },
+        {
+            title: "ABLE Accounts — Tax-Free Savings",
+            value: "Up to $18,000/yr tax-free",
+            desc: "Tax-advantaged savings accounts for veterans with disabilities. Contributions up to $18,000/year grow tax-free, withdrawals for qualified expenses are tax-free, and the balance doesn't count against VA pension or SSI asset limits. Available in every state — many run through Fidelity or Vanguard.",
+            url: "https://www.ablenrc.org/what-is-able/",
+            show: true
         }
     ];
 
