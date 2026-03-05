@@ -827,6 +827,19 @@ select:focus, input[type="number"]:focus {
     margin: 0;
 }
 
+.overlooked-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8em;
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.overlooked-link:hover {
+    text-decoration: underline;
+}
+
 /* --- Survivor Benefits --- */
 .survivor-content {
     max-width: 700px;

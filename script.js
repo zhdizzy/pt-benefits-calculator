@@ -839,66 +839,84 @@ function renderOverlookedBenefits() {
             title: "Federal Student Loan Forgiveness",
             value: r.hasStudentLoans ? fmtInt(r.studentLoanSaved) + " forgiven" : "If applicable",
             desc: "100% of federal student loans forgiven through TPD discharge. The Department of Education automatically identifies eligible veterans. Includes Parent PLUS loans. Tax-free.",
+            url: "https://www.va.gov/disability/eligibility/special-claims/total-disability-individual-unemployability/",
             show: true
         },
         {
             title: "Chapter 31 Vocational Rehabilitation",
             value: "Up to " + fmtInt(chapter31Data.estimatedDegreeValue) + "+",
             desc: "Covers 100% of tuition (no cap, unlike GI Bill), books, supplies, equipment, and pays a monthly subsistence allowance. Often more valuable than the Post-9/11 GI Bill.",
+            url: "https://www.va.gov/careers-employment/vocational-rehabilitation/",
             show: true
         },
         {
             title: "National Parks Lifetime Pass",
             value: "Free (saves $80/yr)",
             desc: "Free Access Pass to all 2,000+ national parks, wildlife refuges, and federal recreational lands. Covers entrance and standard amenity fees.",
+            url: "https://www.nps.gov/subjects/accessibility/interagency-access-pass.htm",
             show: true
         },
         {
             title: "Space-A Military Flights",
             value: "Free domestic flights",
             desc: "Space-Available flights within the US (CONUS, Alaska, Hawaii, territories) as Category 6. Spouse can fly with you. Must have DoD ID card.",
+            url: "https://www.amc.af.mil/AMC-Travel-Site/",
             show: true
         },
         {
             title: "10-Point Federal Hiring Preference",
             value: "Career advantage",
             desc: "10-point hiring preference for all federal government jobs. Plus Schedule A non-competitive hiring authority — agencies can hire you directly.",
+            url: "https://www.opm.gov/policy-data-oversight/veterans-services/vet-guide-for-hr-professionals/",
             show: true
         },
         {
             title: "Travel Reimbursement",
             value: "$0.415/mile",
             desc: "Reimbursed for travel to and from VA medical appointments. $3 deductible each way, capped at $18/month in deductibles.",
+            url: "https://www.va.gov/health-care/get-reimbursed-for-travel-pay/",
             show: true
         },
         {
             title: "Clothing Allowance",
             value: fmtInt(additionalBenefits.clothingAllowance.annual2026) + "/year",
             desc: "Annual payment if prosthetic devices or skin medications damage your clothing. Apply by August 1 each year.",
+            url: "https://www.va.gov/disability/eligibility/special-claims/clothing-allowance/",
             show: true
         },
         {
             title: "COLA: Automatic Annual Raises",
             value: "~2.6%/year average",
             desc: "VA compensation increases automatically every year with Social Security COLA. No action needed. The 2026 increase was 2.8%. Over time, this significantly increases your benefits.",
+            url: "https://www.va.gov/disability/compensation-rates/veteran-rates/",
             show: true
         },
         {
             title: "Concurrent Retirement & Disability Pay (CRDP)",
             value: "Full retirement + full VA disability",
             desc: "Military retirees with 50%+ VA disability receive both full military retirement pay AND full VA disability compensation — no offset. Automatic enrollment.",
+            url: "https://www.dfas.mil/retiredmilitary/disability/crdp/",
             show: r.isRetiree
         },
         {
             title: "$0 VA Healthcare — What It Really Means",
             value: "$0 copays across the board",
             desc: "Priority Group 1 = zero copays for everything: ER visits ($2,200 avg civilian cost), ambulance ($1,200), surgeries, mental health ($200/session), prescriptions ($150/mo avg), and preventive care. All through VA facilities or VA-authorized community care.",
+            url: "https://www.va.gov/health-care/about-va-health-benefits/",
             show: true
         },
         {
             title: "VA Life Insurance (VALife)",
             value: "Up to $40,000 coverage",
             desc: "Guaranteed-issue whole life insurance — no health exam, no health questions. Available to veterans with any service-connected disability. Critical if your disabilities make you uninsurable on the civilian market. Premiums based on age, not health.",
+            url: "https://www.va.gov/life-insurance/options-eligibility/valife/",
+            show: true
+        },
+        {
+            title: "Service Dog — Free Veterinary Care",
+            value: "Free care for your service dog",
+            desc: "The VA provides service dogs for qualifying veterans with PTSD, mobility impairments, and other conditions. Once enrolled, the VA covers all veterinary care, equipment, and training for your service dog.",
+            url: "https://www.prosthetics.va.gov/ServiceAndGuideDogs.asp",
             show: true
         }
     ];
@@ -913,6 +931,7 @@ function renderOverlookedBenefits() {
                     <span class="overlooked-value">${item.value}</span>
                 </div>
                 <p class="overlooked-desc">${item.desc}</p>
+                ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="overlooked-link">Learn more</a>` : ''}
             </div>
         `;
     }
