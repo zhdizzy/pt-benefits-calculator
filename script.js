@@ -839,7 +839,7 @@ function renderOverlookedBenefits() {
             title: "Federal Student Loan Forgiveness",
             value: r.hasStudentLoans ? fmtInt(r.studentLoanSaved) + " forgiven" : "If applicable",
             desc: "100% of federal student loans forgiven through TPD discharge. The Department of Education automatically identifies eligible veterans. Includes Parent PLUS loans. Tax-free.",
-            url: "https://www.va.gov/disability/eligibility/special-claims/total-disability-individual-unemployability/",
+            url: "https://studentaid.gov/tpd-discharge/",
             show: true
         },
         {
