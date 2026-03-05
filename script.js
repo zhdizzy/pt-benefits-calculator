@@ -918,6 +918,13 @@ function renderOverlookedBenefits() {
             desc: "The VA provides service dogs for qualifying veterans with PTSD, mobility impairments, and other conditions. Once enrolled, the VA covers all veterinary care, equipment, and training for your service dog.",
             url: "https://www.prosthetics.va.gov/ServiceAndGuideDogs.asp",
             show: true
+        },
+        {
+            title: "Veterans Treatment Courts",
+            value: "Legal protection",
+            desc: "Over 600 Veterans Treatment Courts nationwide offer an alternative to traditional criminal courts. Eligible veterans get treatment-focused programs instead of incarceration, with access to VA services, mentors, and case dismissal upon completion. Free legal help is also available through VA-accredited attorneys and legal clinics.",
+            url: "https://www.va.gov/homeless/vjo.asp",
+            show: true
         }
     ];
 
