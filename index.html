@@ -227,21 +227,18 @@
         <div id="cta-content"></div>
     </div>
 
-    <!-- Section 9: Subscribe -->
-    <div id="subscribe-container">
-        <h2>Stay Informed — Subscribe to The Better Veteran</h2>
-        <p class="subscribe-subtext">Get weekly insights on optimizing your benefits — disability, healthcare, education, home loans, and more.</p>
-        <div class="subscribe-embed">
-            <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-            <iframe
-                src="https://subscribe-forms.beehiiv.com/49570ada-448b-4e52-b2e1-ae56aedb1ee2"
-                class="beehiiv-embed"
-                data-test-id="beehiiv-embed"
-                frameborder="0"
-                scrolling="no"
-                style="width: 652px; height: 202px; margin: 0; border-radius: 10px; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;">
-            </iframe>
-        </div>
+    <!-- Email My Results -->
+    <div id="email-results-container" class="section-container">
+        <h2>Email My Results</h2>
+        <p class="section-subtitle">Get a link to your personalized results — bookmark-free. Revisit or share anytime.</p>
+        <form id="email-results-form" class="email-results-form">
+            <div class="email-form-row">
+                <input type="email" id="email-input" placeholder="your@email.com" required>
+                <button type="submit" id="email-submit-btn" class="action-btn">Send My Results</button>
+            </div>
+            <p id="email-status" class="email-status"></p>
+            <p class="input-hint">You'll also receive The Better Veteran newsletter — weekly veteran benefit insights. Unsubscribe anytime.</p>
+        </form>
     </div>
 
     <!-- Print / Share -->
@@ -253,6 +250,7 @@
     <div class="more-tools">
         <h3>More Free Veteran Tools</h3>
         <div class="tools-links">
+            <a href="/salary/">Salary Translator</a>
             <a href="/mba/">MBA Comparison Tool</a>
             <a href="/va-loan/">VA Loan Calculator</a>
             <a href="https://www.thebetterveteran.com/" target="_blank" rel="noopener noreferrer">The Better Veteran Newsletter</a>

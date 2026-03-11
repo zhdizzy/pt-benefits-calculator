@@ -1029,27 +1029,28 @@ select:focus, input[type="number"]:focus {
     line-height: 1.5;
 }
 
-/* --- Subscribe Section --- */
-#subscribe-container {
-    background-color: var(--bg-surface);
-    color: var(--text-primary);
-    padding: 32px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    margin-bottom: 24px;
+/* --- Email Results Form --- */
+#email-results-container {
+    background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(26, 54, 93, 0.15) 100%);
+    border: 1px solid var(--primary);
     text-align: center;
 }
-
-.subscribe-subtext {
-    font-size: 0.9em;
-    color: var(--text-secondary);
-    margin: 0 0 20px 0;
+.email-form-row {
+    display: flex; gap: 10px; justify-content: center;
+    max-width: 480px; margin: 0 auto;
 }
-
-.subscribe-embed {
-    display: flex;
-    justify-content: center;
+.email-form-row input[type="email"] {
+    flex: 1; padding: 12px 16px; border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm); background: var(--bg-card);
+    color: var(--text-primary); font-size: 0.95em;
 }
+.email-form-row input[type="email"]:focus {
+    outline: none; border-color: var(--primary-light);
+}
+.email-form-row button { white-space: nowrap; }
+.email-status { margin-top: 10px; font-size: 0.9em; min-height: 1.4em; }
+.email-status.email-success { color: var(--green); font-weight: 600; }
+.email-status.email-error { color: var(--accent); font-weight: 600; }
 
 /* --- Action Bar (Print / Share) --- */
 .action-bar {
@@ -1124,12 +1125,14 @@ footer p {
     .view-toggle { flex-wrap: wrap; }
     .difference-card .diff-amount { font-size: 1.5em; }
     .survivor-value { font-size: 1.5em; }
+    .email-form-row { flex-direction: column; }
+    .email-form-row button { width: 100%; }
 }
 
 /* --- Print Stylesheet --- */
 @media print {
     body { padding: 0; background: white; }
-    .no-print, .action-bar, #subscribe-container, .input-group-toggle .toggle-indicator,
+    .no-print, .action-bar, #email-results-container, .input-group-toggle .toggle-indicator,
     .view-toggle, .cta-links, .other-tools, .custom-scenario, .expand-btn { display: none !important; }
     .section-container { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; page-break-inside: avoid; }
     #calculator-container { display: none; }

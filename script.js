@@ -36,6 +36,10 @@ const stateBenefitsDiv = document.getElementById('state-benefits');
 const overlookedBenefitsDiv = document.getElementById('overlooked-benefits');
 const survivorBenefitsDiv = document.getElementById('survivor-benefits');
 const ctaContent = document.getElementById('cta-content');
+const emailResultsForm = document.getElementById('email-results-form');
+const emailInput = document.getElementById('email-input');
+const emailSubmitBtn = document.getElementById('email-submit-btn');
+const emailStatus = document.getElementById('email-status');
 
 // --- View state ---
 let currentView = 'monthly'; // 'monthly', 'annual', 'lifetime'
@@ -1108,11 +1112,97 @@ function setupStudentLoanToggle() {
     });
 }
 
+// --- URL Sharing ---
+function buildShareUrl() {
+    const params = new URLSearchParams();
+    params.set('r', currentRatingSelect.value);
+    params.set('a', veteranAgeInput.value);
+    params.set('s', stateSelect.value);
+    params.set('ret', isRetireeSelect.value);
+    params.set('m', maritalStatusSelect.value);
+    params.set('c', numChildrenInput.value);
+    params.set('cc', numCollegeChildrenInput.value);
+    params.set('dp', dependentParentsSelect.value);
+    params.set('hv', homeValueInput.value);
+    params.set('oh', ownsHomeSelect.value);
+    params.set('va', vaLoanAmountInput.value);
+    params.set('sl', hasStudentLoansSelect.value);
+    if (hasStudentLoansSelect.value === 'yes') params.set('slb', studentLoanBalanceInput.value);
+    params.set('oi', otherIncomeInput.value);
+    params.set('py', projectionSlider.value);
+    if (includeColaCheckbox.checked) params.set('cola', '1');
+    if (smcLevelSelect.value !== 'none') params.set('smc', smcLevelSelect.value);
+    return window.location.origin + window.location.pathname + '?' + params.toString();
+}
+
+function loadFromUrl() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.size === 0) return;
+    if (p.has('r')) currentRatingSelect.value = p.get('r');
+    if (p.has('a')) veteranAgeInput.value = p.get('a');
+    if (p.has('s')) stateSelect.value = p.get('s');
+    if (p.has('ret')) isRetireeSelect.value = p.get('ret');
+    if (p.has('m')) maritalStatusSelect.value = p.get('m');
+    if (p.has('c')) numChildrenInput.value = p.get('c');
+    if (p.has('cc')) numCollegeChildrenInput.value = p.get('cc');
+    if (p.has('dp')) dependentParentsSelect.value = p.get('dp');
+    if (p.has('hv')) homeValueInput.value = p.get('hv');
+    if (p.has('oh')) ownsHomeSelect.value = p.get('oh');
+    if (p.has('va')) vaLoanAmountInput.value = p.get('va');
+    if (p.has('sl')) {
+        hasStudentLoansSelect.value = p.get('sl');
+        studentLoanWrapper.style.display = p.get('sl') === 'yes' ? 'block' : 'none';
+    }
+    if (p.has('slb')) studentLoanBalanceInput.value = p.get('slb');
+    if (p.has('oi')) otherIncomeInput.value = p.get('oi');
+    if (p.has('py')) { projectionSlider.value = p.get('py'); projectionValueSpan.textContent = p.get('py') + ' years'; }
+    if (p.get('cola') === '1') includeColaCheckbox.checked = true;
+    if (p.has('smc')) smcLevelSelect.value = p.get('smc');
+}
+
+// --- Email Results ---
+function setupEmailResults() {
+    emailResultsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        if (!email) return;
+
+        emailSubmitBtn.disabled = true;
+        emailSubmitBtn.textContent = 'Sending...';
+        emailStatus.textContent = '';
+        emailStatus.className = 'email-status';
+
+        try {
+            const res = await fetch('/api/email-results', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, resultsUrl: buildShareUrl(), source: 'pt-benefits' }),
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                emailStatus.textContent = 'Check your inbox — your results link is on the way.';
+                emailStatus.classList.add('email-success');
+                emailInput.value = '';
+            } else {
+                emailStatus.textContent = data.error || 'Something went wrong. Please try again.';
+                emailStatus.classList.add('email-error');
+            }
+        } catch {
+            emailStatus.textContent = 'Network error. Please check your connection and try again.';
+            emailStatus.classList.add('email-error');
+        }
+
+        emailSubmitBtn.disabled = false;
+        emailSubmitBtn.textContent = 'Send My Results';
+    });
+}
+
 // --- Print ---
 function setupPrint() {
     document.getElementById('print-btn').addEventListener('click', () => window.print());
     document.getElementById('share-btn').addEventListener('click', () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
+        navigator.clipboard.writeText(buildShareUrl()).then(() => {
             const btn = document.getElementById('share-btn');
             btn.textContent = 'Link Copied!';
             setTimeout(() => { btn.textContent = 'Copy Link to Share'; }, 2000);
@@ -1149,5 +1239,7 @@ setupExpandables();
 setupViewToggle();
 setupStudentLoanToggle();
 setupPrint();
+setupEmailResults();
+loadFromUrl();
 updateSliderFill();
 calculate();
