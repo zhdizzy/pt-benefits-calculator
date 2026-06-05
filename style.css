@@ -1182,3 +1182,10 @@ footer p {
 
 /* Back-to-Toolbox button (added 2026-06-05) */
 .home-btn--tools { left: auto; right: 0; }
+
+/* Mobile header: put Home + All Tools side-by-side, brand name centered below */
+@media (max-width: 600px) {
+    .brand-header { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; min-height: 0; }
+    .home-btn, .home-btn--tools { position: static; transform: none; left: auto; right: auto; align-self: auto; }
+    .brand-name { flex-basis: 100%; width: 100%; text-align: center; margin-top: 2px; }
+}
